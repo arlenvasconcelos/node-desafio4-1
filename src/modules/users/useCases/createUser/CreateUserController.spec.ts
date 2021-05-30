@@ -5,6 +5,11 @@ import { app } from "../../../../app";
 import createConnection from "../../../../database/index";
 
 let connection: Connection;
+const userData = {
+  name: "test",
+  email: "test@test.com",
+  password: "test",
+}
 
 describe("Create User Controller", () => {
   beforeAll(async () => {
@@ -18,26 +23,14 @@ describe("Create User Controller", () => {
   });
 
   it("should be able to create a new user", async () => {
-
-    const mockedUser = {
-      name: "user",
-      email: "user@user.com",
-      password: "user",
-    }
-    const response = await request(app).post("/api/v1/users").send(mockedUser);
+    const response = await request(app).post("/api/v1/users").send(userData);
 
     expect(response.statusCode).toBe(201);
   });
 
   it("should not be able to create a new user with same email", async () => {
 
-    const response = await request(app).post("/api/v1/users").send(
-      {
-        name: "user",
-        email: "user@user.com",
-        password: "user",
-      }
-    );
+    const response = await request(app).post("/api/v1/users").send(userData);
 
     expect(response.statusCode).toBe(400);
   });

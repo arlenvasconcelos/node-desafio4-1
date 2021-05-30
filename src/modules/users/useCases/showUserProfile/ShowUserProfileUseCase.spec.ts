@@ -7,6 +7,12 @@ let inMemoryUsersRepository: InMemoryUsersRepository;
 let showUserProfileUseCase: ShowUserProfileUseCase;
 let createUserUseCase: CreateUserUseCase;
 
+const userData = {
+  name:"test",
+  email:"test@test.com",
+  password:"123456"
+};
+
 describe("Show user profile", () => {
   beforeEach(() => {
     inMemoryUsersRepository = new InMemoryUsersRepository();
@@ -19,18 +25,13 @@ describe("Show user profile", () => {
   });
 
   it("Should be able to show a user profile", async () => {
-    const newUser = {
-      name:"user",
-      email:"user@user.com",
-      password:"123456"
-    };
 
-    const createdUser = await createUserUseCase.execute(newUser);
+    const createdUser = await createUserUseCase.execute(userData);
 
     const userProfile = await showUserProfileUseCase.execute(createdUser.id ?? '');
 
     expect(userProfile).toHaveProperty("id");
-    expect(createdUser.email).toEqual("user@user.com");
+    expect(createdUser.email).toEqual(userData.email);
   });
 
   it("Should not be able to show a user profile if user does not exists", () => {

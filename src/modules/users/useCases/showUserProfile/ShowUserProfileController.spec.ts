@@ -12,7 +12,7 @@ const mockedUser = {
   password: "admin",
 }
 
-describe("Authenticate User Controller", () => {
+describe("Show User Profile Controller", () => {
   beforeAll(async () => {
     connection = await createConnection();
     await connection.runMigrations();

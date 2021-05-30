@@ -13,7 +13,7 @@ const mockedUser = {
   password:"123456"
 };
 
-describe("Show user profile", () => {
+describe("Authenticate user", () => {
   beforeAll(async () => {
     inMemoryUsersRepository = new InMemoryUsersRepository();
     authenticateUserUseCase = new AuthenticateUserUseCase(
