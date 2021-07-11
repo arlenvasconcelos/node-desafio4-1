@@ -1,19 +1,16 @@
 {
-  "username": "postgres",
-  "password": "docker",
-
-  "name": "default",
   "type": "postgres",
-  "host": "localhost",
   "port": 5432,
+  "host": "localhost",
+  "username": "postgres",
+  "password": "123456",
   "database": "fin_api",
+  "migrations": ["./src/database/migrations/*.ts"],
   "entities": [
-    "./src/modules/**/entities/*.ts"
-  ],
-  "migrations": [
-    "./src/database/migrations/*.ts"
+    "**/entities/*.ts"
   ],
   "cli": {
     "migrationsDir": "./src/database/migrations"
   }
+
 }
